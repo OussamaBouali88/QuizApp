@@ -3,10 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>quiz-app</title>
+    <title>Quiz</title>
   </head>
   <body>
-    
+    <header class="bg-[#0C0D0F] flex items-center pl-10 py-2 border-[#2B2D31] border-b-2">
+      <h1 class="text-2xl text-[#F2F2F3] uppercase">Quiz</h1>
+      <p class="text-[#A3A5AB] pl-10">Landing</p>
+    </header>
+    <section class="flex flex-col h-screen">
+      <main class="bg-[#111214] w-full flex-1">
+        <div class="text-center pt-16">
+          <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">General Knowledge</p>
+          <h2 class="text-[#F2F2F3] text-[46px] font-semibold">The Quick Quiz</h2>
+          <p class="text-[#A3A5AB] text-[18px]">A short set of multiple-choice questions.</p>
+        </div>
+        <div class="w-140 mx-auto mt-10 py-5 px-10 bg-[#191A1E] border border-[#2B2D31] rounded-xl">
+          <h3 class="text-[#A3A5AB] text-[12px] uppercase font-bold pb-3 border-b border-[#2A2A2E]">Quiz Details</h3>
+          <div class="mt-7 flex justify-between">
+            <span class="text-[#A3A5AB] text-[15px]">Questions</span>
+            <span class="text-[#F2F2F3] text-[15px] font-bold">10</span>
+          </div>
+          <div class="mt-7 flex justify-between">
+            <span class="text-[#A3A5AB] text-[15px]">Time per question</span>
+            <span class="text-[#F2F2F3] text-[15px] font-bold">1 minute</span>
+          </div>
+          <div class="mt-7 flex justify-between">
+            <span class="text-[#A3A5AB] text-[15px]">Scoring</span>
+            <span class="text-[#F2F2F3] text-[15px] font-bold">+1 correct · -1 timeout</span>
+          </div>
+          <div class="mt-7 flex justify-between">
+            <span class="text-[#A3A5AB] text-[15px]">Format</span>
+            <span class="text-[#F2F2F3] text-[15px] font-bold">Multiple choice</span>
+          </div>
+          <button class="w-full mt-10 py-4 bg-[#F2F2F3] rounded-2xl font-bold cursor-pointer">Start quiz</button>
+        </div>
+        <p class="text-[#707279] text-[13px] text-center mt-4">You'll see the answer immediately after each choice.</p>
+      </main>
+    </section>
   </body>
 </html>
