@@ -12,7 +12,7 @@
       <h1 class="text-2xl text-[#F2F2F3] uppercase">Quiz</h1>
       <p class="text-[#A3A5AB] pl-10">Landing</p>
     </header>
-    <section class="flex flex-col h-screen bg-[#111214] screen">
+    <section id="start-screen" class="flex flex-col h-screen bg-[#111214]">
       <div class="text-center pt-16">
         <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">General Knowledge</p>
         <h2 class="text-[#F2F2F3] text-[46px] font-semibold">The Quick Quiz</h2>
@@ -36,50 +36,38 @@
           <span class="text-[#A3A5AB] text-[15px]">Format</span>
           <span class="text-[#F2F2F3] text-[15px] font-bold">Multiple choice</span>
         </div>
-        <button class="w-full mt-10 py-4 bg-[#F2F2F3] rounded-2xl font-bold cursor-pointer">Start quiz</button>
+        <button id="start-btn" class="w-full mt-10 py-4 bg-[#F2F2F3] rounded-2xl font-bold cursor-pointer">Start quiz</button>
       </div>
       <p class="text-[#707279] text-[13px] text-center mt-4">You'll see the answer immediately after each choice.</p>
     </section>
-    <section class="flex flex-col h-screen bg-[#111214] screen">
+    <section id="question-screen" class="flex flex-col h-screen bg-[#111214] hidden">
       <div class="w-280 mx-auto pt-10 flex flex-col">
         <div class="flex justify-between">
           <h3 class="text-[#A3A5AB] text-[13px] font-bold uppercase">Question <span id="question-number">03</span>/10</h3>
           <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">Score <span id="score">0</span></p>
         </div>
-        <div class="w-full h-1 mt-4 bg-[#2B2D31] rounded-2xl">
-          <div class="w-full h-full bg-[#F2F2F3]"></div>
+        <div class="w-full h-1 mt-4 bg-[#2B2D31] rounded-2xl overflow-hidden">
+          <div id="progress-bar" class="h-full bg-[#F2F2F3] rounded-2xl"></div>
         </div>
         <p id="timer" class="w-full mt-4 text-[#F2F2F3] text-[14px] font-bold text-end">01:00</p>
         <div class="w-280 bg-[#191A1E] mt-8 py-6 px-12 rounded-2xl border border-[#2B2D31]">
           <span class="text-[#A3A5AB] text-[12px] font-bold uppercase">Topic</span>
-          <p class="text-[#F2F2F3] text-[27px] font-bold mt-5">Question</p>
-          <div class="flex flex-col gap-6 mt-12">
-            <div class="bg-[#191A1E] border-2 border-[#2B2D31] rounded-xl py-2 px-8 flex items-center w-full gap-8">
-              <span class="text-[#F2F2F3] text-[13px] font-bold border border-[#2B2D31] rounded-lg py-2 px-3">A</span>
-              <p class="text-[#F2F2F3] text-[15px]">Option 1</p>
-            </div>
-            <div class="bg-[#191A1E] border-2 border-[#2B2D31] rounded-xl py-2 px-8 flex items-center w-full gap-8">
-              <span class="text-[#F2F2F3] text-[13px] font-bold border border-[#2B2D31] rounded-lg py-2 px-3">B</span>
-              <p class="text-[#F2F2F3] text-[15px]">Option 1</p>
-            </div>
-            <div class="bg-[#191A1E] border-2 border-[#2B2D31] rounded-xl py-2 px-8 flex items-center w-full gap-8">
-              <span class="text-[#F2F2F3] text-[13px] font-bold border border-[#2B2D31] rounded-lg py-2 px-3">C</span>
-              <p class="text-[#F2F2F3] text-[15px]">Option 1</p>
-            </div>
-            <div class="bg-[#191A1E] border-2 border-[#2B2D31] rounded-xl py-2 px-8 flex items-center w-full gap-8">
-              <span class="text-[#F2F2F3] text-[13px] font-bold border border-[#2B2D31] rounded-lg py-2 px-3">D</span>
-              <p class="text-[#F2F2F3] text-[15px]">Option 1</p>
-            </div>
+          <p id="current-question" class="text-[#F2F2F3] text-[27px] font-bold mt-5">Question</p>
+          <div id="answers-container" class="flex flex-col gap-6 mt-12">
+            
           </div>
-          <p class="text-[#707279] text-[13px] mt-5">Select an answer to continue.</p>
+          <div class="flex justify-between items-center mt-5">
+            <p id="statement" class="text-[#707279] text-[13px]">Select an answer to continue.</p>
+            <button id="next-btn" class="text-[#F2F2F3] text-[14px] font-bold">Next question</button>
+          </div>
         </div>
       </div>
     </section>
-    <section class="flex flex-col h-screen bg-[#111214]">
+    <section id="result-screen" class="flex flex-col h-screen bg-[#111214] hidden">
       <div class="mx-auto flex flex-col mt-10 text-center">
         <h3 class="text-[#A3A5AB] text-[13px] font-bold uppercase">Quiz Complete</h3>
         <span class="text-[#F2F2F3] text-[40px] font-bold">Final Score</span>
-        <span class="text-[#F2F2F3] text-[68px] font-bold leading-10">5/10</span>
+        <span id="score-text" class="text-[#F2F2F3] text-[68px] font-bold leading-10">5/10</span>
         <span class="text-[#A3A5AB] text-[15px] mt-6">A message depending on the results</span>
       </div>
       <div class="w-250 flex flex-col bg-[#191A1E] border border-[#2B2D31] rounded-xl mx-auto mt-12 pt-2 px-12 pb-10">
@@ -87,81 +75,12 @@
           <span>Results</span>
           <span>Outcome</span>
         </div>
-        <div class="flex flex-col mt-6">
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">01</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">02</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">03</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">04</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">05</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">06</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">07</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">08</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">09</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
-          <div class="flex justify-between border-b border-[#2A2A2E] py-2">
-            <div>
-              <span class="text-[#A3A5AB] text-[13px] font-bold">10</span>
-              <span class="text-[#F2F2F3] text-[14px] ml-5">Question</span>
-            </div>
-            <span class="text-[#A3A5AB] text-[15px] font-bold">Correct/Incorrect</span>
-          </div>
+        <div id="results-list" class="flex flex-col mt-6">
+          
         </div>
-
       </div>
-      <button class="bg-[#F2F2F3] text-[#111214] text-[15px] font-bold w-fit mx-auto mt-8 py-5 px-26 rounded-xl">Try again</button>
+      <button id="restart-btn" class="bg-[#F2F2F3] text-[#111214] text-[15px] font-bold w-fit mx-auto mt-8 py-5 px-26 rounded-xl">Try again</button>
     </section>
+    <script type="module" src="/src/script.js"></script>
   </body>
 </html>

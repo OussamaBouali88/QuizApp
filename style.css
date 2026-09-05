@@ -1,4 +1,39 @@
 @import "tailwindcss";
 
-.screen { display: none; }
-.screen.active { display: block; }
+.hidden { display: none; }
+
+.option {
+    color: #F2F2F3;
+    background-color: #191A1E;
+    border: 2px solid #2B2D31;
+    border-radius: 12px;
+    padding-block: 8px;
+    padding-inline: 32px;
+}
+
+.correct-answer {
+    background-color: #193221;
+    border: 2px solid #79C98B;
+}
+
+.wrong-answer {
+    background-color: #E67878;
+}
+
+.correct-statement {
+    color: #79C98B;
+}
+
+.wrong-statement {
+    color: #E67878;
+}
+
+#progress-bar {
+    animation: shrink linear forwards;
+    animation-duration: var(--duration, 60s);
+}
+
+@keyframes shrink {
+    from { width: 100%; }
+    to   { width: 0%; }
+}
