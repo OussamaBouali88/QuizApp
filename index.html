@@ -20,22 +20,22 @@
       </div>
       <div class="w-140 mx-auto mt-10 py-5 px-10 bg-[#191A1E] border border-[#2B2D31] rounded-xl">
         <h3 class="text-[#A3A5AB] text-[12px] uppercase font-bold pb-3 border-b border-[#2A2A2E]">Quiz Details</h3>
-        <div class="mt-7 flex justify-between">
-          <span class="text-[#A3A5AB] text-[15px]">Questions</span>
-          <span class="text-[#F2F2F3] text-[15px] font-bold">10</span>
-        </div>
-        <div class="mt-7 flex justify-between">
-          <span class="text-[#A3A5AB] text-[15px]">Time per question</span>
-          <span class="text-[#F2F2F3] text-[15px] font-bold">1 minute</span>
-        </div>
-        <div class="mt-7 flex justify-between">
-          <span class="text-[#A3A5AB] text-[15px]">Scoring</span>
-          <span class="text-[#F2F2F3] text-[15px] font-bold">+1 correct · -1 timeout</span>
-        </div>
-        <div class="mt-7 flex justify-between">
-          <span class="text-[#A3A5AB] text-[15px]">Format</span>
-          <span class="text-[#F2F2F3] text-[15px] font-bold">Multiple choice</span>
-        </div>
+        <dl class="mt-7 flex justify-between [&>dd]:m-0">
+          <dt class="text-[#A3A5AB] text-[15px]">Questions</dt>
+          <dd class="text-[#F2F2F3] text-[15px] font-bold">10</dd>
+        </dl>
+        <dl class="mt-7 flex justify-between [&>dd]:m-0">
+          <dt class="text-[#A3A5AB] text-[15px]">Time per question</dt>
+          <dd class="text-[#F2F2F3] text-[15px] font-bold">1 minute</dd>
+        </dl>
+        <dl class="mt-7 flex justify-between [&>dd]:m-0">
+          <dt class="text-[#A3A5AB] text-[15px]">Scoring</dt>
+          <dd class="text-[#F2F2F3] text-[15px] font-bold">+1 correct · -1 timeout</dd>
+        </dl>
+        <dl class="mt-7 flex justify-between [&>dd]:m-0">
+          <dt class="text-[#A3A5AB] text-[15px]">Format</dt>
+          <dd class="text-[#F2F2F3] text-[15px] font-bold">Multiple choice</dd>
+        </dl>
         <button id="start-btn" class="w-full mt-10 py-4 bg-[#F2F2F3] rounded-2xl font-bold cursor-pointer">Start quiz</button>
       </div>
       <p class="text-[#707279] text-[13px] text-center mt-4">You'll see the answer immediately after each choice.</p>
@@ -50,35 +50,35 @@
           <div id="progress-bar" class="h-full bg-[#F2F2F3] rounded-2xl"></div>
         </div>
         <p id="timer" class="w-full mt-4 text-[#F2F2F3] text-[14px] font-bold text-end">01:00</p>
-        <div class="w-280 bg-[#191A1E] mt-8 py-6 px-12 rounded-2xl border border-[#2B2D31]">
+        <article class="w-280 bg-[#191A1E] mt-8 py-6 px-12 rounded-2xl border border-[#2B2D31]">
           <span class="text-[#A3A5AB] text-[12px] font-bold uppercase">Topic</span>
           <p id="current-question" class="text-[#F2F2F3] text-[27px] font-bold mt-5">Question</p>
-          <div id="answers-container" class="flex flex-col gap-6 mt-12">
-            
-          </div>
+          <ul id="answers-container" class="list-none flex flex-col gap-6 mt-12">
+
+          </ul>
           <div class="flex justify-between items-center mt-5">
             <p id="statement" class="text-[#707279] text-[13px]">Select an answer to continue.</p>
             <button id="next-btn" class="text-[#F2F2F3] text-[14px] font-bold">Next question</button>
           </div>
-        </div>
+        </article>
       </div>
     </section>
     <section id="result-screen" class="flex flex-col h-screen bg-[#111214] hidden">
       <div class="mx-auto flex flex-col mt-10 text-center">
         <h3 class="text-[#A3A5AB] text-[13px] font-bold uppercase">Quiz Complete</h3>
-        <span class="text-[#F2F2F3] text-[40px] font-bold">Final Score</span>
+        <h2 class="text-[#F2F2F3] text-[40px] font-bold">Final Score</h2>
         <span id="score-text" class="text-[#F2F2F3] text-[68px] font-bold leading-10">5/10</span>
         <span class="text-[#A3A5AB] text-[15px] mt-6">A message depending on the results</span>
       </div>
-      <div class="w-250 flex flex-col bg-[#191A1E] border border-[#2B2D31] rounded-xl mx-auto mt-12 pt-2 px-12 pb-10">
+      <section class="w-250 flex flex-col bg-[#191A1E] border border-[#2B2D31] rounded-xl mx-auto mt-12 pt-2 px-12 pb-10">
         <div class="w-full flex justify-between text-[#A3A5AB] text-[12px] font-bold uppercase">
           <span>Results</span>
           <span>Outcome</span>
         </div>
-        <div id="results-list" class="flex flex-col mt-6">
-          
-        </div>
-      </div>
+        <ul id="results-list" class="list-none flex flex-col mt-6">
+
+        </ul>
+      </section>
       <button id="restart-btn" class="bg-[#F2F2F3] text-[#111214] text-[15px] font-bold w-fit mx-auto mt-8 py-5 px-26 rounded-xl">Try again</button>
     </section>
     <script type="module" src="/src/script.js"></script>

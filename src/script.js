@@ -31,11 +31,16 @@ function renderOptions(question) {
     container.innerHTML = '';
 
     question.options.forEach((optionText) => {
+        const li = document.createElement("li");
+        li.className = "list-none";
+
         const btn = document.createElement("button");
         btn.textContent = optionText;
         btn.classList.add("option");
         btn.addEventListener("click", () => selectAnswer(optionText));
-        container.appendChild(btn);
+
+        li.appendChild(btn);
+        container.appendChild(li);
     });
 }
 
@@ -164,8 +169,8 @@ function showResults() {
     list.innerHTML = '';
 
     state.answersLog.forEach((entry, i) => {
-        const row = document.createElement("div");
-        row.className = "flex justify-between border-b border-[#2A2A2E] py-2";
+        const row = document.createElement("li");
+        row.className = "w-full list-none flex justify-between border-b border-[#2A2A2E] py-2";
 
         let statusText, statusClass;
         if (entry.wasCorrect) {

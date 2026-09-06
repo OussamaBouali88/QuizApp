@@ -3,6 +3,7 @@
 .hidden { display: none; }
 
 .option {
+    width: 100%;
     color: #F2F2F3;
     background-color: #191A1E;
     border: 2px solid #2B2D31;
