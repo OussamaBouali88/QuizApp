@@ -35,6 +35,7 @@ function renderOptions(question) {
         li.className = "list-none";
 
         const btn = document.createElement("button");
+        btn.type = "button";
         btn.textContent = optionText;
         btn.classList.add("option");
         btn.addEventListener("click", () => selectAnswer(optionText));
@@ -103,19 +104,48 @@ function updateTimerDisplay() {
 }
 
 
+function switchScreen(currentScreenEl, nextScreenEl) {
+    currentScreenEl.classList.add("fade-out");
+    setTimeout(() => {
+        currentScreenEl.classList.add("hidden");
+        currentScreenEl.classList.remove("fade-out");
+
+        nextScreenEl.classList.remove("hidden");
+        nextScreenEl.classList.add("fade-in");
+        setTimeout(() => {
+            nextScreenEl.classList.remove("fade-in");
+        }, 400);
+    }, 300);
+}
+
 function loadQuestion(index) {
-    const question = state.questions[index];
+    const questionCard = document.querySelector("#question-card");
+    if (questionCard) {
+        questionCard.classList.add("fade-out");
+    }
 
-    document.querySelector("#current-question").textContent = question.question;
-    renderOptions(question);
+    setTimeout(() => {
+        const question = state.questions[index];
 
-    document.querySelector("#next-btn").classList.add("hidden"); 
-    document.querySelector("#question-number").textContent = String(index + 1).padStart(2, '0');
+        document.querySelector("#current-question").textContent = question.question;
+        renderOptions(question);
 
-    state.selectedAnswer = null;
-    state.answered = false;
+        document.querySelector("#next-btn").classList.add("hidden"); 
+        document.querySelector("#question-number").textContent = String(index + 1).padStart(2, '0');
 
-    startTimer();
+        state.selectedAnswer = null;
+        state.answered = false;
+
+        startTimer();
+
+        if (questionCard) {
+            questionCard.classList.remove("fade-out");
+            questionCard.classList.add("fade-in");
+            setTimeout(() => {
+                questionCard.classList.remove("fade-in");
+            }, 300);
+        }
+    }, questionCard && state.currentIndex > 0 ? 250 : 0);
 }
 
 function selectAnswer(chosenText) {
@@ -161,8 +191,9 @@ function nextQuestion() {
 
 
 function showResults() {
-    document.querySelector("#question-screen").classList.add("hidden");
-    document.querySelector("#result-screen").classList.remove("hidden");
+    const questionScreen = document.querySelector("#question-screen");
+    const resultScreen = document.querySelector("#result-screen");
+
     document.querySelector("#score-text").textContent = `${state.score} / ${state.questions.length}`;
 
     const list = document.querySelector("#results-list");
@@ -194,6 +225,8 @@ function showResults() {
 
         list.appendChild(row);
     });
+
+    switchScreen(questionScreen, resultScreen);
 }
 
 
@@ -203,16 +236,19 @@ function startQuiz() {
     state.score = 0;
     state.answersLog = [];
 
-    document.querySelector("#start-screen").classList.add("hidden");
-    document.querySelector("#question-screen").classList.remove("hidden");
+    const startScreen = document.querySelector("#start-screen");
+    const questionScreen = document.querySelector("#question-screen");
 
+    switchScreen(startScreen, questionScreen);
     loadQuestion(state.currentIndex);
 }
 
 
 function restartQuiz() {
-    document.querySelector("#result-screen").classList.add("hidden");
-    document.querySelector("#start-screen").classList.remove("hidden");
+    const resultScreen = document.querySelector("#result-screen");
+    const startScreen = document.querySelector("#start-screen");
+
+    switchScreen(resultScreen, startScreen);
 }
 
 

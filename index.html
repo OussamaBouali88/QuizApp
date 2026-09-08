@@ -7,80 +7,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz</title>
   </head>
-  <body>
+  <body class="bg-[#111214]">
     <header class="bg-[#0C0D0F] flex items-center pl-10 py-2 border-[#2B2D31] border-b-2">
       <h1 class="text-2xl text-[#F2F2F3] uppercase">Quiz</h1>
-      <p class="text-[#A3A5AB] pl-10">Landing</p>
+      <span class="text-[#A3A5AB] pl-10">Landing</span>
     </header>
-    <section id="start-screen" class="flex flex-col h-screen bg-[#111214]">
-      <div class="text-center pt-16">
-        <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">General Knowledge</p>
-        <h2 class="text-[#F2F2F3] text-[46px] font-semibold">The Quick Quiz</h2>
-        <p class="text-[#A3A5AB] text-[18px]">A short set of multiple-choice questions.</p>
-      </div>
-      <div class="w-140 mx-auto mt-10 py-5 px-10 bg-[#191A1E] border border-[#2B2D31] rounded-xl">
-        <h3 class="text-[#A3A5AB] text-[12px] uppercase font-bold pb-3 border-b border-[#2A2A2E]">Quiz Details</h3>
-        <dl class="mt-7 flex justify-between [&>dd]:m-0">
-          <dt class="text-[#A3A5AB] text-[15px]">Questions</dt>
-          <dd class="text-[#F2F2F3] text-[15px] font-bold">10</dd>
-        </dl>
-        <dl class="mt-7 flex justify-between [&>dd]:m-0">
-          <dt class="text-[#A3A5AB] text-[15px]">Time per question</dt>
-          <dd class="text-[#F2F2F3] text-[15px] font-bold">1 minute</dd>
-        </dl>
-        <dl class="mt-7 flex justify-between [&>dd]:m-0">
-          <dt class="text-[#A3A5AB] text-[15px]">Scoring</dt>
-          <dd class="text-[#F2F2F3] text-[15px] font-bold">+1 correct · -1 timeout</dd>
-        </dl>
-        <dl class="mt-7 flex justify-between [&>dd]:m-0">
-          <dt class="text-[#A3A5AB] text-[15px]">Format</dt>
-          <dd class="text-[#F2F2F3] text-[15px] font-bold">Multiple choice</dd>
-        </dl>
-        <button id="start-btn" class="w-full mt-10 py-4 bg-[#F2F2F3] rounded-2xl font-bold cursor-pointer">Start quiz</button>
-      </div>
-      <p class="text-[#707279] text-[13px] text-center mt-4">You'll see the answer immediately after each choice.</p>
-    </section>
-    <section id="question-screen" class="flex flex-col h-screen bg-[#111214] hidden">
-      <div class="w-280 mx-auto pt-10 flex flex-col">
-        <div class="flex justify-between">
-          <h3 class="text-[#A3A5AB] text-[13px] font-bold uppercase">Question <span id="question-number">03</span>/10</h3>
-          <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">Score <span id="score">0</span></p>
+    <main>
+      <section id="start-screen" class="page-screen flex flex-col h-screen bg-[#111214]" aria-labelledby="start-title">
+        <header class="text-center pt-16">
+          <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">General Knowledge</p>
+          <h2 id="start-title" class="text-[#F2F2F3] text-[46px] font-semibold">The Quick Quiz</h2>
+          <p class="text-[#A3A5AB] text-[18px]">A short set of multiple-choice questions.</p>
+        </header>
+        <div class="w-140 mx-auto mt-10 py-5 px-10 bg-[#191A1E] border border-[#2B2D31] rounded-xl">
+          <h3 class="text-[#A3A5AB] text-[12px] uppercase font-bold pb-3 border-b border-[#2A2A2E]">Quiz Details</h3>
+          <dl class="mt-7 flex flex-col gap-7">
+            <div class="flex justify-between">
+              <dt class="text-[#A3A5AB] text-[15px]">Questions</dt>
+              <dd class="text-[#F2F2F3] text-[15px] font-bold m-0">10</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-[#A3A5AB] text-[15px]">Time per question</dt>
+              <dd class="text-[#F2F2F3] text-[15px] font-bold m-0">1 minute</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-[#A3A5AB] text-[15px]">Scoring</dt>
+              <dd class="text-[#F2F2F3] text-[15px] font-bold m-0">+1 correct · -1 timeout</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-[#A3A5AB] text-[15px]">Format</dt>
+              <dd class="text-[#F2F2F3] text-[15px] font-bold m-0">Multiple choice</dd>
+            </div>
+          </dl>
+          <button id="start-btn" type="button" class="w-full mt-10 py-4 bg-[#F2F2F3] text-[#111214] hover:bg-[#E2E2E5] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 rounded-2xl font-bold cursor-pointer shadow-md">Start quiz</button>
         </div>
-        <div class="w-full h-1 mt-4 bg-[#2B2D31] rounded-2xl overflow-hidden">
-          <div id="progress-bar" class="h-full bg-[#F2F2F3] rounded-2xl"></div>
+        <p class="text-[#707279] text-[13px] text-center mt-4">You'll see the answer immediately after each choice.</p>
+      </section>
+
+      <section id="question-screen" class="page-screen flex flex-col h-screen bg-[#111214] hidden" aria-labelledby="current-question">
+        <div id="question-card" class="question-content w-280 mx-auto pt-10 flex flex-col">
+          <header class="flex justify-between">
+            <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">Question <span id="question-number">03</span>/10</p>
+            <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">Score <span id="score">0</span></p>
+          </header>
+          <div class="w-full h-1 mt-4 bg-[#2B2D31] rounded-2xl overflow-hidden" role="progressbar" aria-label="Question timer">
+            <div id="progress-bar" class="h-full bg-[#F2F2F3] rounded-2xl"></div>
+          </div>
+          <time id="timer" class="w-full mt-4 text-[#F2F2F3] text-[14px] font-bold text-end block">01:00</time>
+          <article class="w-280 bg-[#191A1E] mt-8 py-6 px-12 rounded-2xl border border-[#2B2D31]">
+            <p class="text-[#A3A5AB] text-[12px] font-bold uppercase">Topic</p>
+            <h2 id="current-question" class="text-[#F2F2F3] text-[27px] font-bold mt-5">Question</h2>
+            <ul id="answers-container" class="list-none flex flex-col gap-6 mt-12 pl-0">
+
+            </ul>
+            <footer class="flex justify-between items-center mt-5">
+              <p id="statement" class="text-[#707279] text-[13px]" aria-live="polite">Select an answer to continue.</p>
+              <button id="next-btn" type="button" class="text-[#F2F2F3] text-[14px] font-bold bg-[#2B2D31] hover:bg-[#3F4248] px-5 py-2.5 rounded-xl cursor-pointer transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0">Next question</button>
+            </footer>
+          </article>
         </div>
-        <p id="timer" class="w-full mt-4 text-[#F2F2F3] text-[14px] font-bold text-end">01:00</p>
-        <article class="w-280 bg-[#191A1E] mt-8 py-6 px-12 rounded-2xl border border-[#2B2D31]">
-          <span class="text-[#A3A5AB] text-[12px] font-bold uppercase">Topic</span>
-          <p id="current-question" class="text-[#F2F2F3] text-[27px] font-bold mt-5">Question</p>
-          <ul id="answers-container" class="list-none flex flex-col gap-6 mt-12">
+      </section>
+
+      <section id="result-screen" class="page-screen flex flex-col h-screen bg-[#111214] hidden" aria-labelledby="results-title">
+        <header class="mx-auto flex flex-col mt-10 text-center">
+          <p class="text-[#A3A5AB] text-[13px] font-bold uppercase">Quiz Complete</p>
+          <h2 id="results-title" class="text-[#F2F2F3] text-[40px] font-bold">Final Score</h2>
+          <p id="score-text" class="text-[#F2F2F3] text-[68px] font-bold leading-10 my-0">5/10</p>
+          <p class="text-[#A3A5AB] text-[15px] mt-6">A message depending on the results</p>
+        </header>
+        <section class="w-250 flex flex-col bg-[#191A1E] border border-[#2B2D31] rounded-xl mx-auto mt-12 pt-2 px-12 pb-10" aria-label="Detailed Breakdown">
+          <div class="w-full flex justify-between text-[#A3A5AB] text-[12px] font-bold uppercase">
+            <span>Results</span>
+            <span>Outcome</span>
+          </div>
+          <ul id="results-list" class="list-none flex flex-col mt-6 pl-0">
 
           </ul>
-          <div class="flex justify-between items-center mt-5">
-            <p id="statement" class="text-[#707279] text-[13px]">Select an answer to continue.</p>
-            <button id="next-btn" class="text-[#F2F2F3] text-[14px] font-bold">Next question</button>
-          </div>
-        </article>
-      </div>
-    </section>
-    <section id="result-screen" class="flex flex-col h-screen bg-[#111214] hidden">
-      <div class="mx-auto flex flex-col mt-10 text-center">
-        <h3 class="text-[#A3A5AB] text-[13px] font-bold uppercase">Quiz Complete</h3>
-        <h2 class="text-[#F2F2F3] text-[40px] font-bold">Final Score</h2>
-        <span id="score-text" class="text-[#F2F2F3] text-[68px] font-bold leading-10">5/10</span>
-        <span class="text-[#A3A5AB] text-[15px] mt-6">A message depending on the results</span>
-      </div>
-      <section class="w-250 flex flex-col bg-[#191A1E] border border-[#2B2D31] rounded-xl mx-auto mt-12 pt-2 px-12 pb-10">
-        <div class="w-full flex justify-between text-[#A3A5AB] text-[12px] font-bold uppercase">
-          <span>Results</span>
-          <span>Outcome</span>
-        </div>
-        <ul id="results-list" class="list-none flex flex-col mt-6">
-
-        </ul>
+        </section>
+        <button id="restart-btn" type="button" class="bg-[#F2F2F3] text-[#111214] text-[15px] font-bold w-fit mx-auto mt-8 py-5 px-26 rounded-xl hover:bg-[#E2E2E5] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-md">Try again</button>
       </section>
-      <button id="restart-btn" class="bg-[#F2F2F3] text-[#111214] text-[15px] font-bold w-fit mx-auto mt-8 py-5 px-26 rounded-xl">Try again</button>
-    </section>
+    </main>
     <script type="module" src="/src/script.js"></script>
   </body>
 </html>

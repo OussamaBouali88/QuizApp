@@ -1,24 +1,116 @@
 @import "tailwindcss";
 
-.hidden { display: none; }
+.hidden {
+    display: none !important;
+}
 
+/* Page Transition / Fade Animations */
+.page-screen {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-screen.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.page-screen.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Question Content Slide Transition */
+.question-content {
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+.question-content.fade-out {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.question-content.fade-in {
+    animation: slideInRight 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Answer Option Hover and Interactive Effects */
 .option {
     width: 100%;
     color: #F2F2F3;
     background-color: #191A1E;
     border: 2px solid #2B2D31;
     border-radius: 12px;
-    padding-block: 8px;
+    padding-block: 10px;
     padding-inline: 32px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
+.option:hover:not(:disabled) {
+    background-color: #24262C;
+    border-color: #40434A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.option:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.option:disabled {
+    cursor: not-allowed;
+}
+
+/* Answer Feedback States with subtle animation */
 .correct-answer {
-    background-color: #193221;
-    border: 2px solid #79C98B;
+    background-color: #193221 !important;
+    border: 2px solid #79C98B !important;
+    animation: pulseSuccess 0.4s ease-out;
 }
 
 .wrong-answer {
-    background-color: #E67878;
+    background-color: #421D1D !important;
+    border: 2px solid #E67878 !important;
+    animation: shakeError 0.4s ease-out;
+}
+
+@keyframes pulseSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
 }
 
 .correct-statement {
